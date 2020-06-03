@@ -58,10 +58,9 @@ export default {
     }
   },
   async mounted () {
-    console.log(process.env.OMDBS_API_KEY)
     let self = this,
         getOmdbs = imdbs.map(async (id, idx) => {
-          let api = await axios.get('http://www.omdbapi.com/', { params: { apikey: '1e7c1b1c', i: id, r: 'json'} })
+          let api = await axios.get('http://www.omdbapi.com/', { params: { apikey: process.env.OMDBS_API_KEY, i: id, r: 'json'} })
           return api.data
         }),
         omdbsResults = await Promise.all(getOmdbs)
